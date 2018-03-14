@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.s2032257.tomschoonbeek.nasamarsrover.R;
 
@@ -39,5 +40,8 @@ public class DetailActivity extends AppCompatActivity {
 
         // Invullen van camera-naam
         detailedTextView.setText(camera);
+
+        // Detailed info toast pop-up
+        Toast.makeText(DetailActivity.this,"Photograph taken on " + clickedPhoto.getEarthDate() + ", sol " + clickedPhoto.getSol() + ".",Toast.LENGTH_LONG).show();
     }
 }

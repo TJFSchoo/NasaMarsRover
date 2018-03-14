@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.s2032257.tomschoonbeek.nasamarsrover.R;
 import com.s2032257.tomschoonbeek.nasamarsrover.application_logic.OnItemClickListener;
@@ -23,17 +24,26 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements OnItemClickListener, OnTaskCompleted {
+
+    // Final waardes
     private final static String TAG = "MainActivity";
     private final static String API_KEY = "YuFTWcDAd6vmTI62dHn5NNYIosgdsdL7ZXZ3qCiL";
-    final static String CLICKED_PHOTO = "clickedPhoto";  // non-private in verband met call uit DetailActivity (Intent)
+        // De regel hieronder non-private in verband met call uit DetailActivity (Intent)
+    final static String CLICKED_PHOTO = "clickedPhoto";
 
     private RecyclerView recyclerView;
     private Spinner cameraSelection;
+
+        // De drie regels hieronder alvast geïnitieerd ivm gebruik in Spinner methodes
     private ArrayList<MarsRoverPhoto> photoList = new ArrayList<MarsRoverPhoto>();
     private PhotoAdapter photoAdapter = new PhotoAdapter(MainActivity.this, photoList);
     private PhotoDatabase database = new PhotoDatabase(this);
     private String currentSpinnerSelection = "All cameras";
+
+        // De regel hieronder voor onCreate() geïnitieerd ivm performance. Onnodig initiëren bij wisselen tussen MainActivity en DetailActivity voorkomen
     private ApiAsyncTask asyncTask = new ApiAsyncTask(this);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 } else {
                     photoList.addAll(database.getAllPhotosOfSpecificCamera(currentSpinnerSelection));
                 }
+                // Aantal foto's als toast
+                Toast.makeText(MainActivity.this,photoList.size() + " photographs found.",Toast.LENGTH_SHORT).show();
                 photoAdapter.notifyDataSetChanged();
             }
 
@@ -111,6 +123,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         }
         recyclerView.setAdapter(photoAdapter);
         photoAdapter.setOnItemClickListener(MainActivity.this);
+
+        // Aantal foto's als toast
+        Toast.makeText(MainActivity.this,photoList.size() + " photographs found.",Toast.LENGTH_SHORT).show();
     }
 
     @Override

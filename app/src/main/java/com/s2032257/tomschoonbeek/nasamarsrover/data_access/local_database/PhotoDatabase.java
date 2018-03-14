@@ -115,9 +115,6 @@ public class PhotoDatabase extends SQLiteOpenHelper{
         }
         Log.i(TAG,"Aantal terug te geven foto's: " + photos.size());
 
-        // Zorgt dat enkel de laatste nieuwe 500 waardes blijven staan in de database
-        clean();
-
         return photos;
     }
 
@@ -155,18 +152,6 @@ public class PhotoDatabase extends SQLiteOpenHelper{
         }
         Log.i(TAG,"Aantal terug te geven foto's voor camera " + spinnerSelection + ": " + photos.size());
 
-        // Zorgt dat enkel de laatste nieuwe 500 waardes blijven staan in de database
-        clean();
-
         return photos;
     }
-
-    public void clean(){
-        Log.i(TAG,"clean() aangeroepen. Database opgeschoond door alleen laatste nieuwe 500 rows te bewaren.");
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        String query = "DELETE FROM " + TABLE_NAME + " WHERE ROWID IN (SELECT ROWID FROM " + TABLE_NAME + " ORDER BY ROWID ASC LIMIT 500)";
-        db.rawQuery(query,null);
-    }
-
 }
