@@ -123,9 +123,6 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         }
         recyclerView.setAdapter(photoAdapter);
         photoAdapter.setOnItemClickListener(MainActivity.this);
-
-        // Aantal foto's als toast
-        Toast.makeText(MainActivity.this,photoList.size() + " photographs found.",Toast.LENGTH_SHORT).show();
     }
 
     @Override
