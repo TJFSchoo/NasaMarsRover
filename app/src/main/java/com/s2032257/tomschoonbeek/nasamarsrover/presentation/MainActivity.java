@@ -138,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     public void onTaskCompleted(MarsRoverPhoto photo) {
         Log.i(TAG, "onTaskCompleted() aangeroepen vanuit asynchrone taak.");
         database.addPhoto(photo);
+        photoList.add(photo);
         Log.i(TAG, "Foto met ID " + photo.getId() + " toegevoegd aan database.");
+        photoAdapter.notifyDataSetChanged();
     }
 }
