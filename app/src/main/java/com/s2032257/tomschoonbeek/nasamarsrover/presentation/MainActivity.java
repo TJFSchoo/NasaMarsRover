@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         }
         recyclerView.setAdapter(photoAdapter);
         photoAdapter.setOnItemClickListener(MainActivity.this);
-        photoAdapter.notifyDataSetChanged();
     }
 
     @Override
