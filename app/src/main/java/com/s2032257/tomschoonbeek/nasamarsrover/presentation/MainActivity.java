@@ -99,9 +99,9 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         String url = "";
 
         if(currentSpinnerSelection.equals("All cameras")){
-            url = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=" + random.nextInt(1000)+ "?page=1&api_key=" + API_KEY;
+            url = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=" + random.nextInt(2000)+ "?page=1&api_key=" + API_KEY;
         } else {
-            url = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=" + random.nextInt(1000) + addToQuery + "?page=1&api_key=" + API_KEY;
+            url = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=" + random.nextInt(2000) + addToQuery + "?page=1&api_key=" + API_KEY;
         }
 
         Log.i(TAG, url);
